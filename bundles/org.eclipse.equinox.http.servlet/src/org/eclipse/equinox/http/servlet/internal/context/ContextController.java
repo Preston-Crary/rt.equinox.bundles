@@ -1186,10 +1186,13 @@ public class ContextController {
 			return previousHttpSessionAdaptor;
 		}
 
+		HttpSessionEvent httpSessionEvent = new HttpSessionEvent(
+			httpSessionAdaptor);
+
 		for (HttpSessionListener listener : eventListeners.get(
 				HttpSessionListener.class)) {
 
-			listener.sessionCreated(new HttpSessionEvent(httpSessionAdaptor));
+			listener.sessionCreated(httpSessionEvent);
 		}
 
 		return httpSessionAdaptor;
